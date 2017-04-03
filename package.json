@@ -15,9 +15,11 @@
   "author": "Jesse Okeya",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "mailgun-js": "^0.9.1",
     "mongoose": "^4.9.3",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "twilio": "^2.11.1"
   }
 }

@@ -4,7 +4,13 @@ module.exports = {
 
     mailgun: {
         apiKey: 'key-9a9552007ab07541152611740c8df561',
-        domain: 'sandbox22da495b955745a7bb713500f9dbdb03.mailgun.org'
+        domain: 'www.beatstop.net'
+    },
+
+    twilio: {
+        accountSid: 'AC878d81ab8996dadbcab30f23c6d6d99c',
+        authToken: '3ec1fc48324ae30dac05e8c4ba593931',
+        number: '+12894602318'
     }
 
 }
