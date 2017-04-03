@@ -1,0 +1,10 @@
+{
+    "name": "bigechs-api",
+    "description": "Order Nigerian Foods Online",
+    "keywords": ["Node.js", "HTML5", "Css", "expressJs"
+        "reactJs", "Gulp", "Bootstrap", "webpack"
+    ],
+    "repository": "https://github.com/jesseokeya/bigechs",
+    "logo": "https://thumbs.dreamstime.com/x/bowl-rice-6716326.jpg",
+    "image": "https://thumbs.dreamstime.com/x/bowl-rice-6716326.jpg",
+}

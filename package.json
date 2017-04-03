@@ -1,0 +1,23 @@
+{
+  "name": "bigechs-api",
+  "version": "1.0.0",
+  "description": "big echs api to handle all requests made to the servers including texts and email",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Nodejs",
+    "Expressjs",
+    "Twilio",
+    "Postmark"
+  ],
+  "author": "Jesse Okeya",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mailgun-js": "^0.9.1",
+    "mongoose": "^4.9.3",
+    "morgan": "^1.8.1"
+  }
+}
