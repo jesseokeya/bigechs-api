@@ -9,9 +9,9 @@ const text = configDb.twilio;
 var client = new twilio.RestClient(text.accountSid, text.authToken);
 
 router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 router.get('/', (req, res, next) => {
@@ -36,15 +36,16 @@ router.post('/placeorder', (req, res, next) => {
             user: user,
             status: 'success'
         };
-        let phonenumbers = ['+16134135540', '+16134135540', '+16134135540'];
-        //let phonenumbers = ['+16134135540', '+16138909733', '+16138697075'];
-         phonenumbers.map(function(number) {
+        //let phonenumbers = ['+16134135540'];
+        let phonenumbers = ['+16134135540', '+16138909733', '+16138697075'];
+        phonenumbers.map(function(number) {
             client.messages.create({
                 body: messenger.phone(user),
                 to: number, // Text this number
                 from: text.number // From a valid Twilio number
             }, function(err, message) {
                 if (err) {
+                    console.log(message);
                     return err;
                 }
             });
