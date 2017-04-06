@@ -4,13 +4,14 @@
   "description": "big echs api to handle all requests made to the servers including texts and email",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "keywords": [
     "Nodejs",
     "Expressjs",
     "Twilio",
-    "Postmark"
+    "mailgun"
   ],
   "author": "Jesse Okeya",
   "license": "ISC",

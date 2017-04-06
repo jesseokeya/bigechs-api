@@ -5,8 +5,15 @@ const configDb = require('.././configDb/database.js');
 const mailgun = require('mailgun-js')(configDb.mailgun);
 const messenger = require('./templates/emailTemplate.js');
 const router = express.Router();
+const mongoose = require('mongoose');
+const order = require('.././models/schema.js');
+
 const text = configDb.twilio;
-var client = new twilio.RestClient(text.accountSid, text.authToken);
+mongoose.Promise = global.Promise;
+mongoose.connect(configDb.uri);
+const db = mongoose.connection;
+let client = new twilio.RestClient(text.accountSid, text.authToken);
+let allOrders = mongoose.model('Order');
 
 router.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -14,10 +21,24 @@ router.use(function(req, res, next) {
     next();
 });
 
-router.get('/', (req, res, next) => {
+/* Get Requests */
+router.get(['/','/index'], (req, res, next) => {
     res.send(" Welcome to bigechs-api 🙏🏽 ");
 });
 
+router.get('/getAllOrders', (req, res, next) => {
+    allOrders.find({}, function(err, results){
+      res.send(results);
+    });
+});
+
+router.get('/findPerson/:person', (req, res, next) => {
+    allOrders.find({name: req.params.person}, function(err, results){
+      res.send(results);
+    });
+})
+
+/* Post Requests */
 router.post('/placeorder', (req, res, next) => {
     let user = req.body;
     let ordermail = {};
@@ -36,8 +57,8 @@ router.post('/placeorder', (req, res, next) => {
             user: user,
             status: 'success'
         };
-        //let phonenumbers = ['+16134135540'];
-        let phonenumbers = ['+16134135540', '+16138909733', '+16138697075'];
+        let phonenumbers = ['+16134135540'];
+        //let phonenumbers = ['+16134135540', '+16138909733', '+16138697075'];
         phonenumbers.map(function(number) {
             client.messages.create({
                 body: messenger.phone(user),
@@ -50,11 +71,22 @@ router.post('/placeorder', (req, res, next) => {
                 }
             });
         });
-        res.send(ordermail);
+        let orderObj = {
+            name: req.body.name,
+            phone: req.body.phone,
+            email: req.body.email,
+            order: req.body.order,
+            date: messenger.timeStamp()
+        }
+        let latestOrder = new order(orderObj);
+        latestOrder.save(function(err) {
+            if (err) throw err;
+            console.log('User saved successfully!');
+            res.send(ordermail);
+        });
     });
 
 
-})
-
+});
 
 module.exports = router;

@@ -1,16 +1,10 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose');
 const app = express();
 const configDb = require('./configDb/database.js');
 const routes = require('./routes/routes.js');
 const port = process.env.PORT || 8000;
-
-
-mongoose.Promise = global.Promise;
-mongoose.connect(configDb.uri);
-const db = mongoose.connection;
 
 
 // parse application/x-www-form-urlencoded

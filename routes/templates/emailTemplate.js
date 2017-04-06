@@ -21,5 +21,6 @@ function timeStamp() {
 
 module.exports = {
     email: email,
-    phone: phone
+    phone: phone,
+    timeStamp: timeStamp
 };
