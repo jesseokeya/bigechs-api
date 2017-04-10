@@ -89,4 +89,21 @@ router.post('/placeorder', (req, res, next) => {
 
 });
 
+router.post('/api/submitForm', (req, res) => {
+    let user = req.body;
+    //console.log(user);
+    let data = {
+        from: 'the-winning-consultant-bot <no-reply@twc.com>',
+        to: 'thewinningconsultant@gmail.com, jesseokeya@gmail.com',
+        subject: 'The Winning Consultant',
+        html: messenger.emailTwc(user)
+    };
+
+    mailgun.messages().send(data, function(error, body) {
+        console.log(body);
+    });
+    res.send(req.body);
+})
+
+
 module.exports = router;
